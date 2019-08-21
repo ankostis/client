@@ -777,6 +777,13 @@
           "name": "channelNameMentions"
         },
         {
+          "type": {
+            "type": "array",
+            "items": "KBFSPath"
+          },
+          "name": "kbfsPaths"
+        },
+        {
           "type": "boolean",
           "name": "isEphemeral"
         },

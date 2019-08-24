@@ -18,6 +18,7 @@ type HeaderProps = {
   hideBorder?: boolean
   icon?: React.ReactNode // above center
   leftButton?: React.ReactNode
+  negative?: boolean
   rightButton?: React.ReactNode
   title?: React.ReactNode // center; be sure to lineClamp any long / dynamic strings
   style?: Styles.StylesCrossPlatform
@@ -87,7 +88,7 @@ const Header = (props: HeaderProps) => (
       </Kb.Box2>
       <Kb.Box style={styles.headerCenter}>
         {typeof props.title === 'string' ? (
-          <Kb.Text type="Header" lineClamp={1} center={true}>
+          <Kb.Text type="Header" lineClamp={1} center={true} negative={!!props.negative}>
             {props.title}
           </Kb.Text>
         ) : (
@@ -153,7 +154,7 @@ const styles = Styles.styleSheetCreate(() => {
       flexShrink: 1,
     },
     headerHideBorder: {
-      borderWidth: 0,
+      borderBottomWidth: 0,
     },
     headerLeft: {
       flexGrow: 0,

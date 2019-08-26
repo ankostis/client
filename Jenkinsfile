@@ -486,6 +486,11 @@ def testGo(prefix, packagesToTest) {
       timeout(activity: true, time: 360, unit: 'SECONDS') {
         sh "go list -f '{{.Dir}}' ./...  | fgrep -v kbfs | fgrep -v protocol | xargs realpath --relative-to=. | xargs golangci-lint run --new-from-rev ${BASE_COMMIT_HASH} --deadline 5m0s"
       }
+
+      println("Running golangci-lint for dead code")
+      timeout(activity: true, time: 360, unit: 'SECONDS') {
+        sh "golangci-lint run --no-config --disable-all --enable=deadcode --deadline 5m0s"
+      }
     }
 
     if (isUnix()) {

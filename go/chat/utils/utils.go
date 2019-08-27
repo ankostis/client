@@ -1491,6 +1491,9 @@ func PresentDecoratedTextBody(ctx context.Context, g *globals.Context, msg chat1
 	body = EscapeForDecorate(ctx, body)
 	body = EscapeShrugs(ctx, body)
 
+	// This needs to happen before (deep) links.
+	body = DecorateWithKBFSPath(ctx, body, msg.KbfsPaths)
+
 	// Links
 	body = DecorateWithLinks(ctx, body)
 	// Payment decorations
@@ -1617,7 +1620,6 @@ func PresentMessageUnboxed(ctx context.Context, g *globals.Context, rawMsg chat1
 			AtMentions:            valid.AtMentionUsernames,
 			ChannelMention:        valid.ChannelMention,
 			ChannelNameMentions:   PresentChannelNameMentions(ctx, valid.ChannelNameMentions),
-			KbfsPaths:             valid.KbfsPaths,
 			AssetUrlInfo:          presentAttachmentAssetInfo(ctx, g, rawMsg, convID),
 			IsEphemeral:           valid.IsEphemeral(),
 			IsEphemeralExpired:    valid.IsEphemeralExpired(time.Now()),

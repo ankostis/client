@@ -1473,13 +1473,6 @@
           "name": "channelNameMentions"
         },
         {
-          "type": {
-            "type": "array",
-            "items": "KBFSPath"
-          },
-          "name": "kbfsPaths"
-        },
-        {
           "type": "ReactionMap",
           "name": "reactions"
         },
